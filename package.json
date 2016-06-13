@@ -1,6 +1,6 @@
 {
   "name": "filtered-datastore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a datastore that supports multiple filters active at the same time",
   "main": "lib/index.js",
   "scripts": {

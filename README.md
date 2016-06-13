@@ -68,4 +68,5 @@ npm test
 ## Release History
 
 * 0.0.1 &nbsp;&nbsp;&nbsp; Initial release
+* 0.0.2 &nbsp;&nbsp;&nbsp; fixed bug in allFiltered()
          

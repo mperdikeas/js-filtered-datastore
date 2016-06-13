@@ -38,7 +38,7 @@ describe('FilteredDataStore', function () {
                const ds = fds.FilteredDataStore.fromArray(arr);
                const noneShallPassFilter = ds.deriveFilter( ()=>false );
                ds.installFilters ( [ noneShallPassFilter ] );
-               assert.deepEqual(ds.allFiltered(), arr);
+               assert.deepEqual(ds.allFiltered(), []);
                assert.equal(ds.getSize(), 0);
                for (let i = 0 ; i < arr.length; i++)
                    assert.equal(ds.get(i), null);
@@ -48,15 +48,19 @@ describe('FilteredDataStore', function () {
                const arr = _.range(0, 100, 1);
                const ds = fds.FilteredDataStore.fromArray(arr);
                assert(ds.getSize()===100);
+               assert.deepEqual(ds.allFiltered(), arr);
                const mul3filter = ds.deriveFilter( (i)=>i%3===0 );
                const mul5filter = ds.deriveFilter( (i)=>i%5===0 );
                ds.installFilters ( [ mul3filter, mul5filter] );
-               assert(ds.getSize() === 7); // [0,15,30,45,60,75,90]
+               const EXPECTED = [0,15,30,45,60,75,90];
+               assert(ds.getSize() === EXPECTED.length);
+               assert.deepEqual(ds.allFiltered(), EXPECTED);
                for (let i = 0 ; i < ds.getSize() ; i++) {
                    assert( (ds.get(i)%3===0) && (ds.get(i)%5===0) ) ;
                }
                ds.clearFilters();
-               assert(ds.getSize()===100);               
+               assert(ds.getSize()===100);
+               assert.deepEqual(ds.allFiltered(), arr);
            });
     });
 });

@@ -50,8 +50,8 @@ class FilteredDataStore {
 
     allFiltered() {
         const rv = [];
-        for (let i = 0 ; i < this._underlyingSizer() ; i++)
-            rv.push(this._underlyingGetter(i));
+        for (let i = 0 ; i < this.getSize() ; i++)
+            rv.push(this.get(i));
         return rv;
     }
 
