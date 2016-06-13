@@ -18,6 +18,7 @@ describe('FilteredDataStore', function () {
                    assert.equal(ds.get(i), arr[i]);
                assert.equal(ds.get(-1), null);
                assert.equal(ds.get( 3), null);
+               assert(ds.getUnderlyingSize(), 3);
            });
         it('degenerate filtering all should work'
            , function () {
@@ -31,6 +32,7 @@ describe('FilteredDataStore', function () {
                    assert.equal(ds.get(i), arr[i]);
                assert.equal(ds.get(-1), null);
                assert.equal(ds.get( 3), null);
+               assert(ds.getUnderlyingSize(), 3);               
            });
         it('degenerate filtering none should work'
            , function () {
@@ -42,16 +44,19 @@ describe('FilteredDataStore', function () {
                assert.equal(ds.getSize(), 0);
                for (let i = 0 ; i < arr.length; i++)
                    assert.equal(ds.get(i), null);
+               assert(ds.getUnderlyingSize(), 3);               
            });
         it('composite filtering works'
            , function () {
-               const arr = _.range(0, 100, 1);
+               const N = 100;
+               const arr = _.range(0, N, 1);
                const ds = fds.FilteredDataStore.fromArray(arr);
-               assert(ds.getSize()===100);
+               assert(ds.getSize()===N);
                assert.deepEqual(ds.allFiltered(), arr);
                const mul3filter = ds.deriveFilter( (i)=>i%3===0 );
                const mul5filter = ds.deriveFilter( (i)=>i%5===0 );
                ds.installFilters ( [ mul3filter, mul5filter] );
+               assert(ds.getUnderlyingSize(), N);
                const EXPECTED = [0,15,30,45,60,75,90];
                assert(ds.getSize() === EXPECTED.length);
                assert.deepEqual(ds.allFiltered(), EXPECTED);
@@ -59,8 +64,9 @@ describe('FilteredDataStore', function () {
                    assert( (ds.get(i)%3===0) && (ds.get(i)%5===0) ) ;
                }
                ds.clearFilters();
-               assert(ds.getSize()===100);
+               assert(ds.getSize()===N);
                assert.deepEqual(ds.allFiltered(), arr);
+               assert(ds.getUnderlyingSize(), N);
            });
     });
 });

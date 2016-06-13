@@ -20,6 +20,10 @@ class FilteredDataStore {
     getSize() {
         return this.filter?this.filter.length:this._underlyingSizer();
     }
+    
+    getUnderlyingSize() {
+        return this._underlyingSizer();
+    }
 
     get(idx) {
         const idxThroughFilter = (function(idx) {

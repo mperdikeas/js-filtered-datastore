@@ -29,7 +29,7 @@ E.g. to use an array as the backing datastore:
 A helper facility to create a `FilteredDataStore` out of an array is provided in the
 factory method: `FilteredDataStore.fromArray`.
 
-The facade exposes three methods:
+The facade exposes the following methods:
 
 ```javascript
     ds.deriveFilter(pred);    // returns the filter that corresponds to a given predicate function
@@ -37,7 +37,8 @@ The facade exposes three methods:
     ds.clearFilters();        // clears any installed filters
     ds.getSize();             // returns the size of the (filtered) datastore
     ds.get(i);                // returns the i-th element of the datastore (subject to filtering)
-    ds.allFiltered();         // returns an array of the filtered values 
+    ds.allFiltered();         // returns an array of the filtered values
+    ds.getUnderlyingSize()    // returns the size of the backing datastore (without taking filtering into account)
 ```
 
 ##Use
@@ -69,4 +70,5 @@ npm test
 
 * 0.0.1 &nbsp;&nbsp;&nbsp; Initial release
 * 0.0.2 &nbsp;&nbsp;&nbsp; fixed bug in allFiltered()
+* 0.0.3 &nbsp;&nbsp;&nbsp; added getUnderlyingSize method
          
