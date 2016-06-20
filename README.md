@@ -45,7 +45,7 @@ The facade exposes the following methods:
 
 ```javascript
     import _ from 'lodash';
-    import * as fds from '../lib/app.js';
+    import {FilteredDataStore} from 'filtered-datastore';
 
     const arr = _.range(0, 100, 1);
     const ds = fds.FilteredDataStore.fromArray(arr);
@@ -71,4 +71,4 @@ npm test
 * 0.0.1 &nbsp;&nbsp;&nbsp; Initial release
 * 0.0.2 &nbsp;&nbsp;&nbsp; fixed bug in allFiltered()
 * 0.0.3 &nbsp;&nbsp;&nbsp; added getUnderlyingSize method
-         
+* 0.0.4 &nbsp;&nbsp;&nbsp; only conditionally include the Babel polyfill
